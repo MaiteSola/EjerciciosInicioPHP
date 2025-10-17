@@ -1,0 +1,4 @@
+Sesiones y cookies
+session_start();  // Inicio de sesión
+$_COOKIE["Nombre_cookie"];
+

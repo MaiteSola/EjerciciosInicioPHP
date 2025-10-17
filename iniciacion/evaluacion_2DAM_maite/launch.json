@@ -1,0 +1,20 @@
+
+
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug index.php",
+      "type": "php",
+      "request": "launch",
+      "program": "${evaluacion_2DAM_maite}/notas.php"
+    },
+    {
+      "name": "Debug otro.php",
+      "type": "php",
+      "request": "launch",
+      "program": "${evaluacion_2DAM_maite}/notasSegundaPrueba.php"
+    }
+  ]
+}
+

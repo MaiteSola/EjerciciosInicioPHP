@@ -1,0 +1,18 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug index.php",
+      "type": "php",
+      "request": "launch",
+      "program": "${prueba_test}/peliculas.php"
+    },
+
+    {
+      "name": "Debug coches.php",
+      "type": "php",
+      "request": "launch",
+      "program": "${prueba_test}/coches.php"
+    }
+  ]
+}

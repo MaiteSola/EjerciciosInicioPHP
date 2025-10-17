@@ -3,6 +3,16 @@
 $nuevoNombre= "David";
 $nombres= array("Maite","Miguel","Aitor","Juan","Pablo");
 
+array_push($nombres, "Ander");
+ 
+function pintarNombres($nombresPintar){
+    echo "<ul>\n";
+    foreach ($nombresPintar as $nombre){
+        echo "<li>$nombre</li>\n";
+
+    }
+    echo "</ul>\n";
+}
 ?>
 
 <html>
@@ -15,8 +25,11 @@ $nombres= array("Maite","Miguel","Aitor","Juan","Pablo");
             <li><?= $nombre ?></li>
         <?php endforeach; 
         
-        //function array_push(array $nombres, &$nuevoNombre):string{} es para añadir valores
-        ?>
+        //function array_push($nombres, $nuevoNombre); es para añadir + de 1 valor a la vez.
+        //Luego pones print_r($nombres);
+    ?>
 </ul>
+
+<?= pintarNombres(($nombres)) ?>
 
 </html>
