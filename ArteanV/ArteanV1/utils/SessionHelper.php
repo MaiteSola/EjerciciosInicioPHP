@@ -58,3 +58,4 @@ class SessionHelper {
       return false;
     }
   }
+}
