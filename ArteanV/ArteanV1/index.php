@@ -8,13 +8,13 @@
  * @author ander_frago@cuatrovientos.org
  */
 
-include 'templates/header.php';
+require_once 'templates/header.php';
 ?>
 <!-- Bootstrap core CSS
 * TODO REVISE Este es el aspecto negativo de esta estructura ya que el código esta duplicado
 Y además no está en ASSETS
 ================================================== -->
-<link rel="stylesheet" href=".\assets\css\bootstrap.css">
+
 
 <div class="container-fluid py-5 my-5 bg-light">
   <div id="bienvenida" class="container">
@@ -43,7 +43,8 @@ Y además no está en ASSETS
 * TODO REVISE Este es el aspecto negativo de esta estructura ya que el código esta duplicado
 ================================================== -->
 
-<script src=".\assets\js\bootstrap.js"></script>
+
+
 
 </body>
 

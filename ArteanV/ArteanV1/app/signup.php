@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @title: Proyecto integrador Ev01 - Registro en el sistema.
  * @description:  Script PHP para almacenar un nuevo usuario en la base de datos
@@ -8,27 +9,52 @@
  * @author     Ander Frago & Miguel Goyena <miguel_goyena@cuatrovientos.org>
  */
 
-//TODO completa los requiere que necesites
+//HE añadido un require
+require_once '../templates/header.php';
+require_once '../persistence/DAO/UserDAO.php';
+require_once '../persistence/conf/PersistentManager.php'; // si tu DAO usa esta clase
+require_once '../utils/SessionHelper.php';
+session_start(); //Inicio la sesión
 
 $error = $user = $pass = "";
 
 if (isset($_POST['email'])) {
 
-  // TODO Realiza la lectura de los campos del formulario en $user y $pass
-  
+    // TODO Realiza la lectura de los campos del formulario en $user y $pass
 
-  if ($user == "" || $pass == "") {
-    $error = "Debes completar todos los campos<br><br>";
-  }
-  else {
-    
-    // TODO Inserta el nuevo usuario atraves de un objeto UserDAO, este la utiliza el PersistenceManager
-     
+    //Leo los campos del formulario
+    $user = trim($_POST['email']);
+    $pass = trim($_POST['password']);
 
-    // TODO establece el usuario en sesión con SessionHelper
-    
+    if ($user == "" || $pass == "") {
+        $error = "Debes completar todos los campos<br><br>";
+    } else {
 
-  }
+        // TODO Inserta el nuevo usuario atraves de un objeto UserDAO, este la utiliza el PersistenceManager
+
+        //Utilizando el persistenceManager y un objeto dao hago el insert de esta manera:
+        //1: Creas la conexión
+        $pm = PersistentManager::getInstance();//Esto crea la conexión como es clase privada mete para poder utilizar la instancia asi:
+        $dao = new UserDAO($pm->get_connection()); //Hago la conexión con el dao
+
+        //2: Encriptar contraseña
+        //$hashedPass = password_hash($pass, PASSWORD_DEFAULT);
+
+        //3: Insertar el usuario:
+        $ok = $dao->insert($user, $pass);
+
+        //comprobamos
+        if ($ok) {
+            // TODO establece el usuario en sesión con SessionHelper
+            //Guardo en sesión al usuario con el SessionHelper
+            SessionHelper::setSession($user);
+            //Le redirijo a la página principal
+            header("Location: /login.php");
+            exit;
+        }else {
+            $error = "Error al registrar el usuario (puede que ya exista)";
+        }
+    }
 }
 ?>
 
@@ -45,14 +71,14 @@ if (isset($_POST['email'])) {
             <div class="col-md-3"></div>
             <div class="col-md-6">
                 <div class="form-group has-danger">
-                    <label class="sr-only" for="email">Email:</label>
+                    <label class="sr-only" for="email">email:</label>
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon" style="width: 2.6rem"><i
-                                    class="fa fa-at"></i></div>
+                                class="fa fa-at"></i></div>
                         <input type="text" name="email" class="form-control"
-                               id="email"
-                               placeholder="vivayo@correo.com"
-                               autofocus>
+                            id="email"
+                            placeholder="vivayo@correo.com"
+                            autofocus>
                     </div>
                 </div>
             </div>
@@ -71,10 +97,10 @@ if (isset($_POST['email'])) {
                     <label class="sr-only" for="password">Contraseña:</label>
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon" style="width: 2.6rem"><i
-                                    class="fa fa-key"></i></div>
+                                class="fa fa-key"></i></div>
                         <input type="password" name="password"
-                               class="form-control" id="password"
-                               placeholder="Password">
+                            class="form-control" id="password"
+                            placeholder="Password">
                     </div>
                 </div>
             </div>
@@ -90,7 +116,7 @@ if (isset($_POST['email'])) {
             <div class="col-md-3"></div>
             <div class="col-md-6">
                 <button type="submit" class="btn btn-success"><i
-                            class="fa fa-sign-in"></i> Registrar
+                        class="fa fa-sign-in"></i> Registrar
                 </button>
             </div>
         </div>

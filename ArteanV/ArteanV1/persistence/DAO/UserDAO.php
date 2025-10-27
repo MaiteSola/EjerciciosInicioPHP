@@ -4,7 +4,7 @@ require 'GenericDAO.php';
 class UserDAO extends GenericDAO {
 
   //Se define una constante con el nombre de la tabla
-  const USER_TABLE = 'users';
+  const USER_TABLE = 'usuarios';
 
   public function selectAll() {
     $query = "SELECT * FROM " . UserDAO::USER_TABLE;

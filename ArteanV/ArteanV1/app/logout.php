@@ -8,7 +8,8 @@
  * @author     Ander Frago & Miguel Goyena <miguel_goyena@cuatrovientos.org>
  */
 
-//TODO completa los requiere que necesites
+//HE añadido un require
+require_once '../templates/header.php';
 
 if (isset($_SESSION['user']))
 {

@@ -12,7 +12,16 @@
 
   // Obtenemos el directorio del proyecto para establecer rutas relativas.
   $dir = __DIR__;
+  define('RUTA_BASE', '/ejPHP/ArteanV/ArteanV1/');
   require_once $dir . '/../utils/SessionHelper.php';
+
+  //Rutas relativas:
+    $principal = RUTA_BASE ."index.php"; 
+    $login = RUTA_BASE . "app/login.php";
+    $logout = RUTA_BASE ."app/logout.php";
+    $signup = RUTA_BASE ."app/signup.php";
+    $bootstrapJS = RUTA_BASE . "assets/js/bootstrap.js";
+    $bootstrapCS = RUTA_BASE . "/assets/css/bootstrap.css";
 
 
   ///
@@ -24,7 +33,6 @@
 
   // TODO Almacena en la variable $loggedin el valor retornado de la función loggedin de SessionHelper
   
-
 ?>
 <head>
     <meta charset="utf-8">
@@ -32,6 +40,9 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="<?php echo $bootstrapCS?>">
+    
+    
 
 </head>
 
@@ -50,12 +61,12 @@
                 aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="./index.php">Artean</a>
+        <a class="navbar-brand" href="<?php echo $principal?>">Artean</a>
 
         <div class="collapse navbar-collapse" id="navbarToggler">
             <ul class="navbar-nav mr-auto mt-2 mt-md-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="app/logout.php">Salir</a>
+                    <a class="nav-link" href="<?php echo $logout?>">Salir</a>
                 </li>
             </ul>
         </div>
@@ -72,18 +83,19 @@ else {
                 aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="./index.php">Artean</a>
+        <a class="navbar-brand" href="<?php echo $principal?>">Artean</a>
 
         <div class="collapse navbar-collapse" id="navbarToggler">
             <ul class="navbar-nav mr-auto mt-2 mt-md-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="app/signup.php">Registrarse</a>
+                    <a class="nav-link" href="<?php echo $signup?>">Registrarse</a>
+                   
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="app/login.php">Entrar</a>
+                    <a class="nav-link" href="<?php echo $login ?>">Entrar</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="app/logout.php">Salir</a>
+                    <a class="nav-link" href="<?php echo $logout?>">Salir</a>
                 </li>
             </ul>
         </div>
@@ -93,4 +105,5 @@ else {
 ?>
 
 <!-- TODO Hay que incluir el Bootstrap en Assets -->
-<script src=""></script>
+ <script src="<?php echo $bootstrapJS?>"></script>
+
